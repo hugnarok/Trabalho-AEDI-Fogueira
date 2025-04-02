@@ -1,7 +1,5 @@
 #include "include/algoritimics.hpp"
-
-
-vector<pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+#include "include/config.hpp"
 
 bool limit(int x, int y, int rows, int cols) {
     return x >= 0 && x < rows && y >= 0 && y < cols;
@@ -24,11 +22,11 @@ void propagateFire(vector<vector<int>>& matrix, int rows, int cols) {
         firePositions.pop_back();
 
         for (auto d : directions){
-            int dierctioX = firePos.first + d.first;
+            int directionX = firePos.first + d.first;
             int directionY = firePos.second + d.second;
 
-            if (limit(dierctioX, directionY, rows, cols) && matrix[dierctioX][directionY] == 1) {
-                matrix[dierctioX][directionY] = 2; 
+            if (limit(directionX, directionY, rows, cols) && matrix[directionX][directionY] == 1) {
+                matrix[directionX][directionY] = 2; 
             }
             matrix[firePos.first][firePos.second] = 3;
         }
@@ -49,28 +47,59 @@ bool isFireExtinguished(const vector<vector<int>>& matrix) {
 //animal
 bool runAnimal(vector<vector<int>>& matrix, int rows, int cols, pair<int, int> &animalPos) {
 
-    for (auto d : directions){
-        int dierctioX = animalPos.first + d.first;
+    for (auto d : directions) {
+        int directionX = animalPos.first + d.first;
         int directionY = animalPos.second + d.second;
 
-        if (limit(dierctioX, directionY, rows, cols) && matrix[dierctioX][directionY] == 1) {
+        if (limit(directionX, directionY, rows, cols) && matrix[directionX][directionY] == 0) {
             matrix[animalPos.first][animalPos.second] = 1;
-            matrix[dierctioX][directionY] = 9;
-            animalPos = {dierctioX, directionY};
-            return true;
-        }else if(limit(dierctioX, directionY, rows, cols) && matrix[dierctioX][directionY] == 4){
-            for (auto d : directions) {
-                int newX = animalPos.first + d.first;
-                int newY = animalPos.second + d.second;
-
-                if (limit(newX, newY, rows, cols)) {
-                    matrix[newX][newY] = 1;
-                }
-            }
-            matrix[dierctioX][directionY] = 9;
+            matrix[directionX][directionY] = 9;
+            animalPos = {directionX, directionY};
             return true;
         }
-    }                
+    }
+
+    for (auto d : directions) {
+        int directionX = animalPos.first + d.first;
+        int directionY = animalPos.second + d.second;
+
+        if (limit(directionX, directionY, rows, cols) && matrix[directionX][directionY] == 1) {
+            matrix[animalPos.first][animalPos.second] = 1;
+            matrix[directionX][directionY] = 9;
+            animalPos = {directionX, directionY};
+            return true;
+        }
+    }
+
+    for (auto d : directions){
+        int dierctionX = animalPos.first + d.first;
+        int directionY = animalPos.second + d.second;
+
+        if (limit(dierctionX, directionY, rows, cols) && matrix[dierctionX][directionY] != 2 && matrix[dierctionX][directionY] != 3) {
+            if(matrix[dierctionX][directionY] == 4){
+                for (auto d : directions) {
+                    int newX = dierctionX + d.first;
+                    int newY = directionY + d.second;
+
+                    if (limit(newX, newY, rows, cols) && matrix[newX][newY] == 4) {
+                        matrix[newX][newY] = 4;
+                    }else{
+                        matrix[newX][newY] = 1;
+                    }
+                }
+                matrix[animalPos.first][animalPos.second] = 0;
+                matrix[dierctionX][directionY] = 9;
+                animalPos = {dierctionX, directionY};
+                return true;
+            }else{
+                matrix[animalPos.first][animalPos.second] = 1;
+                matrix[dierctionX][directionY] = 9;
+                animalPos = {dierctionX, directionY};
+                return true;
+            }
+        }
+    }
+
 
     return false; 
 }

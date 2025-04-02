@@ -36,7 +36,7 @@ pair<int, int> getAnimalPosition(const vector<vector<int>>& matrix, int rows, in
 
 vector<vector<int>> createMatrix() {  
 
-    ifstream file("C:/Users/LojaPC/Desktop/Curso FulStak/AEDI/Trabalho-AEDI-Fogueira/src/input.dat");
+    ifstream file("/home/hugo/Área de trabalho/AEDi/Trabalho_01/Trabalho-AEDI-Fogueira/src/input.dat");
     int rows, cols, fireX, fireY;
 
     if (!file){
@@ -53,7 +53,7 @@ vector<vector<int>> createMatrix() {
 //execução
 void executeProgram() {
 
-    ifstream archive("C:/Users/LojaPC/Desktop/Curso FulStak/AEDI/Trabalho-AEDI-Fogueira/src/input.dat");
+    ifstream archive("/home/hugo/Área de trabalho/AEDi/Trabalho_01/Trabalho-AEDI-Fogueira/src/input.dat");
 
     pair<int, int> rowsAndCols = getRowsAndCols(archive);
     int rows = rowsAndCols.first;
