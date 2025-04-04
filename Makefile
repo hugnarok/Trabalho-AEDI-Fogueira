@@ -38,3 +38,5 @@ clean:
 
 run:
 	./$(BUILD)/$(TARGET)
+
+r: clean all run

@@ -1,6 +1,7 @@
 #include "include/arquivos.hpp"
 #include "include/programa.hpp"
 #include "include/algoritimics.hpp"
+#include "include/config.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -15,6 +16,7 @@ void printMatrix(const vector<vector<int>>& matrix) {
         }
         cout << endl;
     }
+    cout << endl;
 }
 
 pair<int, int> getRowsAndCols(ifstream &file) {
@@ -36,7 +38,7 @@ pair<int, int> getAnimalPosition(const vector<vector<int>>& matrix, int rows, in
 
 vector<vector<int>> createMatrix() {  
 
-    ifstream file("/home/hugo/Área de trabalho/AEDi/Trabalho_01/Trabalho-AEDI-Fogueira/src/input.dat");
+    ifstream file("./src/input.dat");
     int rows, cols, fireX, fireY;
 
     if (!file){
@@ -53,22 +55,23 @@ vector<vector<int>> createMatrix() {
 //execução
 void executeProgram() {
 
-    ifstream archive("/home/hugo/Área de trabalho/AEDi/Trabalho_01/Trabalho-AEDI-Fogueira/src/input.dat");
-
+    ifstream archive("./src/input.dat");
     pair<int, int> rowsAndCols = getRowsAndCols(archive);
-    int rows = rowsAndCols.first;
-    int cols = rowsAndCols.second;
+    int cont = 1;
     vector<vector<int>> floresta = createMatrix();
-    pair<int, int> animalPos = getAnimalPosition(floresta, rows, cols);
+    pair<int, int> animalPos = getAnimalPosition(floresta, rowsAndCols.first, rowsAndCols.second);
 
-    while (!isFireExtinguished(floresta)) {
+
+
+    while (!isFireExtinguished(floresta) && (cont < numberOfIterations)) {
         printMatrix(floresta);
-        if (!runAnimal(floresta, rows, cols, animalPos)) {
-            cout << "O animal nao pode mais se mover!" << endl;
-        }
-        propagateFire(floresta, rows, cols);
+        cout << "Iteracao: " << cont << " de " << numberOfIterations << endl;
+        runAnimal(floresta, rowsAndCols.first, rowsAndCols.second, animalPos);
+        propagateFire(floresta, rowsAndCols.first, rowsAndCols.second);
+        
+
+        cont++;
     }
-    
     cout << "Nao ha mais arvores para queimar!" << endl;
 
 }
