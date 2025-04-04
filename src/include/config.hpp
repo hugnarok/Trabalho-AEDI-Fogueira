@@ -29,7 +29,7 @@ const int ESPACO_SEGURO = 0;
     // 12. esquerda = {{0,-1}}
     // 13. cima = {{-1,0}}
     // 14. baixo = {{1,0}}
-const int wind = 0;
+const int wind = 14; // 0 a 14
 
 const int numberOfIterations = 10;
 

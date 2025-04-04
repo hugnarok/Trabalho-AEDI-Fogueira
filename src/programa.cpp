@@ -62,8 +62,9 @@ void executeProgram() {
     pair<int, int> animalPos = getAnimalPosition(floresta, rowsAndCols.first, rowsAndCols.second);
 
 
+    freopen("./src/output.dat", "w", stdout);
 
-    while (!isFireExtinguished(floresta) && (cont < numberOfIterations)) {
+    while (!isFireExtinguished(floresta) && (cont < numberOfIterations + 1)) {
         printMatrix(floresta);
         cout << "Iteracao: " << cont << " de " << numberOfIterations << endl;
         runAnimal(floresta, rowsAndCols.first, rowsAndCols.second, animalPos);
@@ -74,5 +75,6 @@ void executeProgram() {
     }
     cout << "Nao ha mais arvores para queimar!" << endl;
 
+    fclose(stdout);
 }
 

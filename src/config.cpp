@@ -2,22 +2,6 @@
 
 vector<pair<int, int>> whindDirections(int wind){
     vector<pair<int, int>> routes;
-
-    //direçoes: 
-    //direita e baixo = {{1,0}, {0,1}}
-    //esquerda e baixo = {{-1,0}, {0,1}}
-    //direita e cima = {{1,0}, {0,-1}}
-    //esquerda e cima = {{-1,0}, {0,-1}}
-    //cima e baixo = {{-1,0}, {1,0}}
-    //esquerda direita = {{0,-1}, {0,1}}
-    //direita esquerda e cima = {{1,0}, {0,-1}, {0,1}}
-    //direita esquerda e baixo = {{1,0}, {0,-1}, {0,1}}
-    //direita cima e baixo = {{1,0}, {0,-1}, {0,1}}
-    //esquerda cima e baixo = {{-1,0}, {0,-1}, {1,0}}
-    //direita = {{0,1}}
-    //esquerda = {{0,-1}}
-    //cima = {{-1,0}}
-    //baixo = {{1,0}}
     //{rows, coluns}
 
     switch (wind){
