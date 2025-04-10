@@ -9,7 +9,6 @@ using namespace std;
 static bool animalAlive = true;
 static vector<pair<int, int>> newFirePositions;
 static set<pair<int, int>> lastPositionsAnimal;
-static int lifeAnimal = 1;
 
 bool limit(int x, int y, int rows, int cols);
 void propagateFire(vector<vector<int>>& matrix, int rows, int cols);

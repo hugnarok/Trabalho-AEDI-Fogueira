@@ -9,7 +9,7 @@
 #include <string>
 
 void printMatrix(const vector<vector<int>>& matrix) {
-    cout << "\n Matriz atual:\n" << endl;
+    cout << "\nMatriz atual:" << endl;
     for (const auto& row : matrix) {
         for (const auto& cell : row) {
             cout << cell << " ";
@@ -17,6 +17,17 @@ void printMatrix(const vector<vector<int>>& matrix) {
         cout << endl;
     }
     cout << endl;
+}
+
+bool verifyAnimalAlive(const vector<vector<int>>& matrix) {
+    for (const auto& row : matrix) {
+        for (const auto& cell : row) {
+            if (cell == 9) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 pair<int, int> getRowsAndCols(ifstream &file) {
@@ -74,14 +85,15 @@ void executeProgram() {
         cont++;
     }
     
+    
     cout << "Fim da execução\n" << endl;
     cout << "______________________________________" << endl;
     cout << "\nRelatorio de execucao:" << endl;
     cout << "Iteracoes: " << cont - 1 << endl;
-    cout << "Animal vivo: " << (animalAlive ? "Não" : "Sim") << endl;
+    cout << "Animal vivo: " << (verifyAnimalAlive(floresta) ? "Sim" : "Não") << endl;
     cout << "Fogo extinto: " << (isFireExtinguished(floresta) ? "Sim" : "Não") << endl;
     cout << "Animal na posicao: [" << animalPos.first << ", " << animalPos.second << "]" << endl;
-    cout << "Vidas do Animal: " << lifeAnimal << endl;
+    cout << "" << (animalAlive ? "" : "") << endl;
 
     fclose(stdout);
 }

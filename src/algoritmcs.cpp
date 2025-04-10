@@ -1,14 +1,11 @@
 #include "include/algoritimics.hpp"
 #include "include/config.hpp"
 
-
-
+static int lifeAnimal = 1;
 
 bool limit(int x, int y, int rows, int cols) {
     return x >= 0 && x < rows && y >= 0 && y < cols;
 }
-
-
 
 void propagateFire(vector<vector<int>>& matrix, int rows, int cols) {
     vector<pair<int, int>> firePositions;
@@ -45,9 +42,10 @@ void propagateFire(vector<vector<int>>& matrix, int rows, int cols) {
             if (limit(directionX, directionY, rows, cols) && matrix[directionX][directionY] == 9) {
                 if (lifeAnimal > 0) {
                     lifeAnimal--;
+                    printMatrix(matrix);
                     runAnimal(matrix, rows, cols, firePos);
                     matrix[directionX][directionY] = 2;
-                    cout << "\nAnimal atingido pelo fogo! Vida restante: " << lifeAnimal << endl;
+                    cout << "\nAnimal atingido pelo fogo! Vida restante: " << lifeAnimal  << endl;
                 }else if (lifeAnimal == 0) {
                     matrix[directionX][directionY] = 2;
                     animalAlive = false;
