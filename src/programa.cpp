@@ -73,7 +73,15 @@ void executeProgram() {
 
         cont++;
     }
-    cout << "Nao ha mais arvores para queimar!" << endl;
+    
+    cout << "Fim da execução\n" << endl;
+    cout << "______________________________________" << endl;
+    cout << "\nRelatorio de execucao:" << endl;
+    cout << "Iteracoes: " << cont - 1 << endl;
+    cout << "Animal vivo: " << (animalAlive ? "Não" : "Sim") << endl;
+    cout << "Fogo extinto: " << (isFireExtinguished(floresta) ? "Sim" : "Não") << endl;
+    cout << "Animal na posicao: [" << animalPos.first << ", " << animalPos.second << "]" << endl;
+    cout << "Vidas do Animal: " << lifeAnimal << endl;
 
     fclose(stdout);
 }

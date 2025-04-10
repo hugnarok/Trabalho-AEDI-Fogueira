@@ -1,13 +1,14 @@
 #include "include/algoritimics.hpp"
 #include "include/config.hpp"
 
-static bool animalAlive = true;
+
+
 
 bool limit(int x, int y, int rows, int cols) {
     return x >= 0 && x < rows && y >= 0 && y < cols;
 }
 
-static vector<pair<int, int>> newFirePositions;
+
 
 void propagateFire(vector<vector<int>>& matrix, int rows, int cols) {
     vector<pair<int, int>> firePositions;
@@ -42,11 +43,17 @@ void propagateFire(vector<vector<int>>& matrix, int rows, int cols) {
             int directionY = firePos.second + d.second;
 
             if (limit(directionX, directionY, rows, cols) && matrix[directionX][directionY] == 9) {
-                matrix[directionX][directionY] = 2;
-                animalAlive = false;
-            }
-            
-            if (limit(directionX, directionY, rows, cols) && matrix[directionX][directionY] == 1) {
+                if (lifeAnimal > 0) {
+                    lifeAnimal--;
+                    runAnimal(matrix, rows, cols, firePos);
+                    matrix[directionX][directionY] = 2;
+                    cout << "\nAnimal atingido pelo fogo! Vida restante: " << lifeAnimal << endl;
+                }else if (lifeAnimal == 0) {
+                    matrix[directionX][directionY] = 2;
+                    animalAlive = false;
+                    cout << "\nAnimal atingido pelo fogo! Animal morreu!" << endl;
+                }
+            }else if (limit(directionX, directionY, rows, cols) && matrix[directionX][directionY] == 1) {
                 matrix[directionX][directionY] = 2;
             }
         }
@@ -66,12 +73,11 @@ bool isFireExtinguished(const vector<vector<int>>& matrix) {
 }
 
 //anim!al
-static set<pair<int, int>> lastPositionsAnimal;
 
 bool runAnimal(vector<vector<int>>& matrix, int rows, int cols, pair<int, int> &animalPos) {
     if(!animalAlive) return false;
 
-    vector<int> priorities {4, 0, 1};
+    vector<int> priorities {4, 0, 1, 3};
 
     for (int priority : priorities) {
         for (auto d : directions) {

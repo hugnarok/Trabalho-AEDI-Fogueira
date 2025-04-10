@@ -13,7 +13,6 @@ const int POCA_AGUA = 4;
 const int ANIMAL = 9;
 const int ESPACO_SEGURO = 0;
 
-
 // direções: 
     // 1. direita e baixo = {{1,0}, {0,1}}
     // 2. esquerda e baixo = {{-1,0}, {0,1}}
@@ -29,7 +28,7 @@ const int ESPACO_SEGURO = 0;
     // 12. esquerda = {{0,-1}}
     // 13. cima = {{-1,0}}
     // 14. baixo = {{1,0}}
-const int wind = 14; // 0 a 14
+const int wind = 0; // 0 a 14
 
 const int numberOfIterations = 10;
 
