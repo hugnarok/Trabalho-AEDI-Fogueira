@@ -268,7 +268,7 @@ Seguindo as diretrizes organizacionais, visando em deixar separado os arquivos .
         - make: para criar os arquivos executaveis  
         - make run: para executar  
         - meke r: para executar todos de uma vez so
-- `Comandos para clonar o Repositorio:`
+- `Comandos para clonar o Repositorio:`  
       git clone https://github.com/hugnarok/Trabalho-AEDI-Fogueira.git  
 
 ## 🔚 Conclusão  
