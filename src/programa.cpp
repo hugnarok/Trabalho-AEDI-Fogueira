@@ -90,10 +90,10 @@ void executeProgram() {
     cout << "______________________________________" << endl;
     cout << "\nRelatorio de execucao:" << endl;
     cout << "Iteracoes: " << cont - 1 << endl;
-    cout << "Animal vivo: " << (verifyAnimalAlive(floresta) ? "Sim" : "Não") << endl;
     cout << "Fogo extinto: " << (isFireExtinguished(floresta) ? "Sim" : "Não") << endl;
-    cout << "Animal na posicao: [" << animalPos.first << ", " << animalPos.second << "]" << endl;
-    cout << "" << (animalAlive ? "" : "") << endl;
+    printInifoAnimal();
+    cout << "______________________________________" << endl;
+    cout << "Fim do relatorio" << endl;
 
     fclose(stdout);
 }

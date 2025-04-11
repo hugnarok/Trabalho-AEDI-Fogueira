@@ -1,11 +1,23 @@
 #include "include/algoritimics.hpp"
 #include "include/config.hpp"
-
+static bool animalAlive = true;
 static int lifeAnimal = 1;
 
 bool limit(int x, int y, int rows, int cols) {
     return x >= 0 && x < rows && y >= 0 && y < cols;
 }
+
+void printInifoAnimal(){
+    cout << "\nInformacoes do animal:" << endl;
+    cout << "Animal vivo: " << (animalAlive ? "Sim" : "Nao") << endl;
+    cout << "Vidas Animal : " << lifeAnimal << endl;
+    cout << "Passos:" << lastPositionsAnimal.size() << endl;
+    cout << "Posicoes: " <<  endl;
+    for(auto pos : lastPositionsAnimal){
+        cout << "[" << pos.first << ", " << pos.second << "]" << endl;
+    }
+}
+
 
 void propagateFire(vector<vector<int>>& matrix, int rows, int cols) {
     vector<pair<int, int>> firePositions;
@@ -47,7 +59,7 @@ void propagateFire(vector<vector<int>>& matrix, int rows, int cols) {
                     matrix[directionX][directionY] = 2;
                     cout << "\nAnimal atingido pelo fogo! Vida restante: " << lifeAnimal  << endl;
                 }else if (lifeAnimal == 0) {
-                    matrix[directionX][directionY] = 2;
+                    matrix[directionX][directionY] = 8;
                     animalAlive = false;
                     cout << "\nAnimal atingido pelo fogo! Animal morreu!" << endl;
                 }
@@ -101,6 +113,15 @@ bool runAnimal(vector<vector<int>>& matrix, int rows, int cols, pair<int, int> &
                             }
                         }
                     }
+
+                    if (matrix[directionX][directionY] == 3){
+                        matrix[animalPos.first][animalPos.second] = 3;
+                        matrix[directionX][directionY] = 9;
+                        animalPos = {directionX, directionY};
+                        lastPositionsAnimal.insert(animalPos);
+                        return true;
+                    }
+                    
 
                     matrix[animalPos.first][animalPos.second] = 1;
                     matrix[directionX][directionY] = 9;
