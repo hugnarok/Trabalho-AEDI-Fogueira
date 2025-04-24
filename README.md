@@ -1,5 +1,5 @@
 ---
-# 📄 TABALHO AEDI - Simulação de Propagação de Incêndios
+# 📄 TRABALHO AEDI - Simulação de Propagação de Incêndios
 
 <div align="center">
     <img src="img/resized_skip_game.png" width="200" height="200">
